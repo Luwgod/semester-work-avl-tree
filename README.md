@@ -1,4 +1,4 @@
-# Название семестровой работы
+# AVL Tree
 
 [![CMake](https://github.com/Algorithms-and-Data-Structures-2021/semester-work-template/actions/workflows/cmake.yml/badge.svg)](https://github.com/Algorithms-and-Data-Structures-2021/semester-work-template/actions/workflows/cmake.yml)
 
@@ -15,7 +15,7 @@ _Краткое описание семестрового проекта. Сле
 - _Какова теоретическая сложность операций (поиск за `O(log(n))`, вставка за `O(n^2)` и т.д.)?_
 - _Какая-то другая справочная информация о проекте._
 
-## Команда "название команды"
+## Команда Lost in space (1)
 
 _Заполните таблицу с указанием вклада каждого из участников в проект._
 
