@@ -1,27 +1,78 @@
 #pragma once
-
+using namespace std;
 // Заголовочный файл с объявлением структуры данных
 
 namespace itis {
 
-  // Tip 1: объявите здесь необходимые структуры, функции, константы и прочее
+  //  inline constexpr auto kStringConstant = "Hello, stranger!";
 
-  // Пример: объявление константы времени компиляции в заголовочном файле
-  inline constexpr auto kStringConstant = "Hello, stranger!";
 
-  // Пример: объявление структуры с полями и методами
-  struct MyStructure {
+// Узел АВЛ Дерева
+  class Node
+  {
    public:
-    int size_{0};
-    int capacity_{0};
-    int* data_{nullptr};
-
-    // Tip 2: На начальном этапе разработки структуры данных можете определения методов задавать в
-    // заголовочном файле, как только работа будет завершена, можно будет оставить здесь только объявления.
-
-    int size() const {
-      return size_;
-    }
+    int key;
+    Node *left;
+    Node *right;
+    int height;
   };
 
-}  // namespace itis
+
+// Вспомогательная функция для нахождения максимума
+// из двух чисел
+  int max(int a, int b);
+
+  
+// Вспомогательная функция для нахождения
+// высоты дерева
+  int height(Node *N);
+
+
+/* Helper function that allocates a
+new node with the given key and
+NULL left and right pointers. */
+  Node* newNode(int key);
+
+
+
+// A utility function to right
+// rotate subtree rooted with y
+// See the diagram given above.
+  Node *rightRotate(Node *y);
+
+
+
+// A utility function to left
+// rotate subtree rooted with x
+// See the diagram given above.
+  Node *leftRotate(Node *x);
+
+
+
+// Get Balance factor of node N
+  int getBalance(Node *N);
+
+
+
+// Recursive function to insert a key
+// in the subtree rooted with node and
+// returns the new root of the subtree.
+  Node* insert(Node* node, int key);
+
+
+  Node * minValueNode(Node* node);
+
+
+  Node* deleteNode(Node* root, int key);
+
+
+  bool searchNode(Node* root, int key);
+
+
+// A utility function to print preorder
+// traversal of the tree.
+// The function also prints height
+// of every node
+  void preOrder(Node *root);
+
+}
