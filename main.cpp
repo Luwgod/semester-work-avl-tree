@@ -1,4 +1,7 @@
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <stdlib.h>
 
 #include "data_structure.hpp"
 
@@ -17,37 +20,25 @@ int main()
 {
   Node *root = NULL;
 
-  /* Constructing tree given in
-  the above figure */
-  root = insert(root, 10);
-  root = insert(root, 20);
-  root = insert(root, 30);
-  root = insert(root, 40);
-  root = insert(root, 50);
-  root = insert(root, 25);
-  root = insert(root, 27);
 
-  /* The constructed AVL Tree would be
-          30
-          / \
-         20 40
-         / \ \
-        10 25 50
-            \
-            27
-  */
+  string line;
+  int key;
+
+  ifstream in("D:\\PycharmProjs\\dataset\\data\\01\\100.csv"); // окрываем файл для чтения
+  if (in.is_open())
+  {
+    while (getline(in, line))
+    {
+      key = atoi(line.c_str());
+      root = insert(root, key);
+
+    }
+  }
+  in.close();
+
   cout << "Preorder traversal of the "
           "constructed AVL tree is \n";
   preOrder(root);
-
-  root = deleteNode(root, 40);
-
-  cout << "\nPreorder traversal of the "
-          "changed AVL tree is \n";
-  preOrder(root);
-
-  cout << "\n" << searchNode(root, 10);
-  cout << "\n" << searchNode(root, 40);
 
   return 0;
 }

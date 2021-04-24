@@ -1,39 +1,19 @@
-import argparse
+import csv, random
 
-DEFAULT_DESCRIPTION = 'CSV dataset generator script demo.'
-DEFAULT_SAMPLES = 100
+key = False
 
+data_file_sizes = [100, 500, 1000, 5000,
+                   10000, 50000, 100000,  500000,
+                   1000000, 5000000]
+data_set_numbers = ['01', '02', '03', '04', '05', '06',
+                    '07', '08', '09', '10']
+if key:
+    for set_num in data_set_numbers:
+        for size in data_file_sizes:
+            with open(f'data/{set_num}/{size}.csv', mode='w', newline='') as data_file:
+                int_writer = csv.writer(data_file, delimiter=',')
 
-def parse_args():
-    """
-    Парсинг аргументов командной строки (CLI).
-    :return интерфейс для работы с аргументами.
-
-    Больше информации на https://docs.python.org/3.7/howto/argparse.html
-    """
-    parser = argparse.ArgumentParser(description=DEFAULT_DESCRIPTION)
-
-    parser.add_argument('output',
-                        type=str,
-                        help='output CSV file, e.g. data/output.csv')
-
-    parser.add_argument('--samples',
-                        type=int,
-                        default=DEFAULT_SAMPLES,
-                        help='number of samples to generate (default: {})'.format(DEFAULT_SAMPLES))
-
-    return parser.parse_args()
-
-
-if __name__ == '__main__':
-    args = parse_args()
-
-    # валидация аргументов
-    if args.samples < 0:
-        raise ValueError('Number of samples must be greater than 0.')
-
-    # запись данных в файл
-    with open(args.output, 'w') as file:
-        for i in range(args.samples - 1):
-            file.write('{},'.format(i))
-        file.write(str(args.samples - 1))
+                nums_list = list(range(size+1))
+                random.shuffle(nums_list)
+                for num in nums_list:
+                    int_writer.writerow([num])

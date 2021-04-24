@@ -1,6 +1,9 @@
 #include <cstdlib>
+#include <vector>
 #include "data_structure.hpp"
 #include "iostream"
+#include <algorithm>
+
 
 // файл с определениями
 
@@ -271,16 +274,25 @@ tree does not need to be searched. */
     }
   }
 
+  Node* insert_benchmark_func(Node* root, vector<int> keys){
+    for(int key : keys){
+      root = insert(root, key);
+    }
+    return root;
+  }
 
-}  // namespace itis
+  Node* delete_benchmark_func(Node* root, vector<int> shuffled_keys){
+    for(int key : shuffled_keys){
+      root = deleteNode(root, key);
+    }
+    return root;
+  }
 
+  void search_benchmark_func(Node* root, vector<int> shuffled_keys){
+    bool res;
+    for(int key : shuffled_keys){
+      res = searchNode(root, key);
+    }
+  }
 
-/* The AVL Tree after deletion of 10
-            1
-           / \
-           0 9
-          / / \
-        -1 5  11
-          / \
-          2 6
-    */
+}

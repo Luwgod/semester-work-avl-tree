@@ -4,6 +4,7 @@
 #include <string_view>  // string_view
 #include <chrono>       // high_resolution_clock, duration_cast, nanoseconds
 #include <sstream>      // stringstream
+#include "algorithm"
 
 // подключаем вашу структуру данных
 #include "data_structure.hpp"
@@ -17,51 +18,65 @@ static constexpr auto kProjectPath = string_view{PROJECT_SOURCE_DIR};
 
 int main(int argc, char **argv) {
 
-  // Tip 1: входные аргументы позволяют более гибко контролировать параметры вашей программы
-
-  // Можете передать путь до входного/выходного файла в качестве аргумента,
-  // т.е. не обязательно использовать kDatasetPath и прочие константы
-
-  for (int index = 0; index < argc; index++) {
-    cout << "Arg: " << argv[index] << '\n';
-  }
-
-  // Tip 2: для перевода строки в число можете использовать функцию stoi (string to integer)
-
-  // можете использовать функционал класса stringstream для обработки строки
-  auto ss = stringstream("0 1 2");  // передаете строку (входной аргумент или строку из файла) и обрабатываете ее
-
-  int number = 0;
-  ss >> number;  // number = 0
-  ss >> number;  // number = 1
-  ss >> number;  // number = 2
 
   // работа с набором данных
   const auto path = string(kDatasetPath);
-  cout << "Path to the 'dataset/' folder: " << path << endl;
+  const auto proj_path = string(kProjectPath);
 
-  auto input_file = ifstream(path + "/dataset-example.csv");
+  string data_file_sizes[10] = {"100", "500", "1000", "5000",
+      "10000", "50000", "100000", "500000",
+      "1000000", "5000000"};
 
-  if (input_file) {
-    // чтение и обработка набора данных ...
+//  ofstream bench_file(proj_path + "/benchmark/insert_bench.csv", std::ofstream::app);
+//  ofstream bench_file(proj_path + "/benchmark/delete_bench.csv", std::ofstream::app);
+  ofstream bench_file(proj_path + "/benchmark/search_bench.csv", std::ofstream::app);
+
+
+  for(int i=0; i<10; i++) {
+
+    for (string file_size : data_file_sizes) {
+
+      auto input_file = ifstream(path + "/04/" + file_size + ".csv");
+
+      //  auto input_file = ifstream(path + "/03/5000000.csv");
+
+      vector<int> keys, shuffled_keys;
+      string line;
+
+      if (input_file) {
+        while (getline(input_file, line)) {
+          if (line != "") {
+            keys.push_back(atoi(line.c_str()));
+            shuffled_keys.push_back(atoi(line.c_str()));
+          }
+        }
+      }
+      random_shuffle(shuffled_keys.begin(), shuffled_keys.end());
+
+      input_file.close();
+
+      Node* root = NULL;
+//      root = insert_benchmark_func(root, keys);
+
+      const auto time_point_before = chrono::steady_clock::now();
+
+//            root = insert_benchmark_func(root, keys);
+//            root = delete_benchmark_func(root, shuffled_keys);
+            search_benchmark_func(root, shuffled_keys);
+
+      const auto time_point_after = chrono::steady_clock::now();
+
+      const auto time_diff = time_point_after - time_point_before;
+      const long long time_elapsed_ns = chrono::duration_cast<chrono::nanoseconds>(time_diff).count();
+
+      bench_file << time_elapsed_ns << ";";
+
+      //    cout << abs(time_elapsed_ns) << "\n";
+    }
+    bench_file << "\n";
   }
 
-  // Контрольный тест: операции добавления, удаления, поиска и пр. над структурой данных
-
-  // Tip 3: время работы программы (или участка кода) можно осуществить
-  // как изнутри программы (std::chrono), так и сторонними утилитами
-
-  const auto time_point_before = chrono::high_resolution_clock::now();
-
-  // здесь находится участок кода, время которого необходимо замерить
-
-  const auto time_point_after = chrono::high_resolution_clock::now();
-
-  // переводим время в наносекунды
-  const auto time_diff = time_point_after - time_point_before;
-  const long time_elapsed_ns = chrono::duration_cast<chrono::nanoseconds>(time_diff).count();
-
-  cout << "Time elapsed (ns): " << time_elapsed_ns << '\n';
+  bench_file.close();
 
   return 0;
 }

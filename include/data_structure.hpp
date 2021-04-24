@@ -1,4 +1,5 @@
 #pragma once
+#include "vector"
 using namespace std;
 // Заголовочный файл с объявлением структуры данных
 
@@ -74,5 +75,11 @@ NULL left and right pointers. */
 // The function also prints height
 // of every node
   void preOrder(Node *root);
+
+  Node* insert_benchmark_func(Node* root, vector<int> keys);
+
+  Node* delete_benchmark_func(Node* root, vector<int> shuffled_keys);
+
+  void search_benchmark_func(Node* root, vector<int> shuffled_keys);
 
 }
