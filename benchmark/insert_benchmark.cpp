@@ -27,16 +27,16 @@ int main(int argc, char **argv) {
       "10000", "50000", "100000", "500000",
       "1000000", "5000000"};
 
-//  ofstream bench_file(proj_path + "/benchmark/insert_bench.csv", std::ofstream::app);
+  ofstream bench_file(proj_path + "/benchmark/insert_bench.csv", std::ofstream::app);
 //  ofstream bench_file(proj_path + "/benchmark/delete_bench.csv", std::ofstream::app);
-  ofstream bench_file(proj_path + "/benchmark/search_bench.csv", std::ofstream::app);
+//  ofstream bench_file(proj_path + "/benchmark/search_bench.csv", std::ofstream::app);
 
 
   for(int i=0; i<10; i++) {
 
     for (string file_size : data_file_sizes) {
 
-      auto input_file = ifstream(path + "/04/" + file_size + ".csv");
+      auto input_file = ifstream(path + "/04/" + file_size + ".csv"); // здесь выбрать набор данных 01-02-..-10
 
       //  auto input_file = ifstream(path + "/03/5000000.csv");
 
@@ -51,7 +51,7 @@ int main(int argc, char **argv) {
           }
         }
       }
-      random_shuffle(shuffled_keys.begin(), shuffled_keys.end());
+//      random_shuffle(shuffled_keys.begin(), shuffled_keys.end());
 
       input_file.close();
 
@@ -60,9 +60,9 @@ int main(int argc, char **argv) {
 
       const auto time_point_before = chrono::steady_clock::now();
 
-//            root = insert_benchmark_func(root, keys);
+            root = insert_benchmark_func(root, keys);
 //            root = delete_benchmark_func(root, shuffled_keys);
-            search_benchmark_func(root, shuffled_keys);
+//            search_benchmark_func(root, shuffled_keys);
 
       const auto time_point_after = chrono::steady_clock::now();
 

@@ -36,7 +36,7 @@ int main(int argc, char **argv) {
 
     for (string file_size : data_file_sizes) {
 
-      auto input_file = ifstream(path + "/04/" + file_size + ".csv"); // здесь выбрать набор данных 01-02-..-10
+      auto input_file = ifstream(path + "/01/" + file_size + ".csv"); // здесь выбрать набор данных 01-02-..-10
 
       //  auto input_file = ifstream(path + "/03/5000000.csv");
 
@@ -56,7 +56,7 @@ int main(int argc, char **argv) {
       input_file.close();
 
       Node* root = NULL;
-//      root = insert_benchmark_func(root, keys);
+      root = insert_benchmark_func(root, keys);
 
       const auto time_point_before = chrono::steady_clock::now();
 
