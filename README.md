@@ -51,7 +51,7 @@
 возможности IDE):
 
 ```shell
-git clone https://github.com/Algorithms-and-Data-Structures-2021/semester-work-avl-tree.git
+git clone https://github.com/Luwgod/semester-work-avl-tree.git
 ```
 
 Для ручной сборки проекта в терминале введите:
