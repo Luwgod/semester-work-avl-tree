@@ -149,10 +149,10 @@ _Опишите, как запустить контрольные тесты, ч
 
 ## Источники
 
-https://habr.com/ru/post/123951/
-https://ru.wikipedia.org/wiki/АВЛдерево#Оценка_эффект
-https://habr.com/ru/post/150732/
-https://kvodo.ru/avl-tree.html
-https://cyberleninka.ru/article/n/avl-derevyavypolnen
-https://www.youtube.com/watch?app=desktop&v=4qJVF
+-https://habr.com/ru/post/123951/
+-https://ru.wikipedia.org/wiki/АВЛдерево#Оценка_эффект
+-https://habr.com/ru/post/150732/
+-https://kvodo.ru/avl-tree.html
+-https://cyberleninka.ru/article/n/avl-derevyavypolnen
+-https://www.youtube.com/watch?app=desktop&v=4qJVF
 
