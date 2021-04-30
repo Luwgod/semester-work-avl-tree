@@ -2,10 +2,6 @@
 
 [![CMake](https://github.com/Algorithms-and-Data-Structures-2021/semester-work-template/actions/workflows/cmake.yml/badge.svg)](https://github.com/Algorithms-and-Data-Structures-2021/semester-work-template/actions/workflows/cmake.yml)
 
-**_Измените status badge сверху для отображения статуса сборки вашего проекта._**
-
-`Actions > CMake > ... > Create status badge`
-
 - _Какая структура данных реализуется?_
 - _Что она из себя представляет (сбалансированное дерево, линейный список и пр.)?_
 - _Где и как она используется (приложения)?_
@@ -58,7 +54,7 @@ git clone https://github.com/Luwgod/semester-work-avl-tree.git
 
 ```shell
 # переход в папку с проектом
-cd C:\Users\username\asd-projects\semester-work-template
+cd C:\Users\username\asd-projects\semester-work-avl-tree
 
 # создание папки для файлов сборки (чтобы не засорять папку с проектом) 
 mkdir -p build && cd build 
@@ -119,17 +115,13 @@ _Опишите, как запустить контрольные тесты, ч
 
 Для запуска контрольных тестов необходимо предварительно сгенерировать или скачать готовый набор тестовых данных.
 
-**Примечание**. Во избежание "захламления" репозитория большим объёмом данных рекомендуется указать ссылку на архив с
-набором данных, который при необходимости можно скачать по ссылке. Наборы данных должны находиться в папке семестровой
-работы на [Google Drive](https://drive.google.com/drive/folders/17-qridbMXFnz3E-6UjOj0WD1H0jWtpz3?usp=sharing).
-
 ##### Список контрольных тестов
 
 | Название                  | Описание                                | Метрики         |
 | :---                      | ---                                     | :---            |
-| `random_search_benchmark` | поиск элементов по случайному индексу   | _время_         |
-| `add_benchmark`           | добавление элементов в структуру данных | _время, память_ |
-| ...                       | ...                                     | ...             |
+| `search_benchmark`        | поиск элементов по случайному индексу   | _время_         |
+| `insert_benchmark`        | добавление элементов в структуру данных | _время_         |
+| `delete_benchmark`        | удаление дерева в случайном порядке ключей    | _время_             |
 
 ##### Примеры запуска
 
